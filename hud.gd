@@ -8,8 +8,8 @@ func show_message(text):
 	$Message.show()
 	$MessageTimer.start()
 
-func show_game_over():
-	show_message("Game Over")
+func show_game_over(message):
+	show_message(message)
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
 
@@ -21,6 +21,9 @@ func show_game_over():
 
 func update_score(score):
 	$ScoreLabel.text = str(score)
+	
+func update_hi_score(high_score):
+	$HiScoreLabel.text = "Best: " + str(high_score)
 
 func _on_start_button_pressed() -> void:
 	$StartButton.hide()

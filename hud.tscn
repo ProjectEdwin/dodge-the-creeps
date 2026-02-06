@@ -21,10 +21,28 @@ offset_right = 22.5
 offset_bottom = 78.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_37p78")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HiScoreLabel" type="Label" parent="." unique_id=1397833782]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -119.0
+offset_right = 1.0
+offset_bottom = 78.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.68235296, 1, 0.1254902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 18
+text = "Hi Score: 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Message" type="Label" parent="." unique_id=1277407977]
@@ -33,16 +51,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -79.5
-offset_right = 0.5
-offset_bottom = 79.5
+offset_left = -150.0
+offset_top = -120.0
+offset_right = 150.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.11674089, 0.116740905, 0.11674089, 1)
 theme_override_fonts/font = ExtResource("1_37p78")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 49
 text = "Dodge the Creeps!"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 

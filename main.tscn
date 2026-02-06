@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d2c1s3qmdi4ti" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://drx8gkc8yay1y" path="res://mob.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cvqvw7ypmtpn2" path="res://hud.tscn" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://dk1j27d8hbn73" path="res://art/hi_score_win.ogg" id="5_7mycd"]
 [ext_resource type="AudioStream" uid="uid://td2mgko63p61" path="res://art/gameover.wav" id="5_lquwl"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
@@ -66,6 +67,9 @@ rotation = 0.0021008374
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=3233422]
 stream = SubResource("AudioStreamOggVorbis_7mycd")
+
+[node name="HiScoreSound" type="AudioStreamPlayer" parent="." unique_id=72080691]
+stream = ExtResource("5_7mycd")
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=280899942]
 stream = ExtResource("5_lquwl")
