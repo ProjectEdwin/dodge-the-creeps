@@ -2,13 +2,25 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
+var hi_score = 0
+
+func _ready():
+	$Player.hide()
+	$HUD.update_hi_score(hi_score)
 
 func game_over() -> void:
 	$ScoreTimer.stop()
 	$MobTimer.stop()
-	$HUD.show_game_over()
 	$Music.stop()
-	$DeathSound.play()
+	
+	if score > hi_score:
+		hi_score = score
+		$HUD.update_hi_score(hi_score)
+		$HiScoreSound.play()
+		$HUD.show_game_over("New Hi Score!")
+	else:
+		$HUD.show_game_over("Game Over")
+		$DeathSound.play()
 
 func new_game():
 	score = 0
