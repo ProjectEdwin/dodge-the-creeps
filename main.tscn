@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvqvw7ypmtpn2" path="res://hud.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://dk1j27d8hbn73" path="res://art/hi_score_win.ogg" id="5_7mycd"]
 [ext_resource type="AudioStream" uid="uid://td2mgko63p61" path="res://art/gameover.wav" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://hls4q75p142d" path="res://art/mob_appears.ogg" id="7_272bh"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
@@ -45,7 +46,7 @@ color = Color(1, 0.12941177, 1, 0.18039216)
 [node name="Player" parent="." unique_id=1768488024 instance=ExtResource("1_ig7tw")]
 
 [node name="MobTimer" type="Timer" parent="." unique_id=1520050741]
-wait_time = 0.5
+wait_time = 2.0
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=652989129]
 
@@ -73,6 +74,9 @@ stream = ExtResource("5_7mycd")
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=280899942]
 stream = ExtResource("5_lquwl")
+
+[node name="MobSound" type="AudioStreamPlayer" parent="." unique_id=1928854111]
+stream = ExtResource("7_272bh")
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
