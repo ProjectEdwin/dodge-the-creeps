@@ -19,7 +19,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"fly",
-"speed": 3.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -30,7 +30,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"swim",
-"speed": 3.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -41,12 +41,12 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 3.0
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jbnni"]
-radius = 36.0
-height = 100.0
+radius = 24.0
+height = 66.0
 
 [node name="Mob" type="RigidBody2D" unique_id=266891180]
 collision_mask = 0
@@ -55,10 +55,10 @@ script = ExtResource("1_1qmh0")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1055437425]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_pcqmr")
-animation = &"swim"
-frame_progress = 0.08059892
+animation = &"walk"
+frame_progress = 0.40800828
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=702328123]
 rotation = 1.5707964

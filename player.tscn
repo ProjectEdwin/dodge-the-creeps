@@ -17,7 +17,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"up",
-"speed": 5.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -28,7 +28,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 16.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
@@ -42,8 +42,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=677524827]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"walk"
-frame_progress = 0.325347
+animation = &"up"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=224918364]
