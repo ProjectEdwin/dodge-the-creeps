@@ -17,6 +17,8 @@ func show_game_over(message):
 
 	$Message.text = "Dodge the Creeps!"
 	$Message.show()
+	$VersionLabel.show()
+	$AuthorLabel.show()
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout
 	$StartButton.show()
@@ -32,6 +34,8 @@ func update_hi_score(high_score):
 
 func _on_start_button_pressed() -> void:
 	$StartButton.hide()
+	$VersionLabel.hide()
+	$AuthorLabel.hide()
 	start_game.emit()
 
 
