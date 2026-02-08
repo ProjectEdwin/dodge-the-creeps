@@ -6,7 +6,6 @@ extends Node
 
 var score
 var hi_score = 0
-var velocity
 
 
 func _ready():
@@ -15,7 +14,7 @@ func _ready():
 
 
 func new_game():
-	score = 0
+	score = 0 #TODO: Dont forget to set this to 0 
 	$Player.start($StartPosition.position)
 	$MobTimer.wait_time = 2.0
 	$StartTimer.start()
@@ -25,20 +24,38 @@ func new_game():
 	$Music.play()
 
 
-func set_mob_velocity():
+func mob_accelerator():
 	var multiplier = score * 2
-	velocity = Vector2(randf_range(100.0 + multiplier, 150.0 + multiplier), 0.0)
-	print(velocity)
+	return Vector2(randf_range(100.0 + multiplier, 150.0 + multiplier), 0.0)
 
 	
 func set_mob_frequency():
 	#decrease the MobTimer every 5 points
 	if score % 5 == 0:
 		$MobTimer.wait_time -= 0.1
-	print($MobTimer.wait_time)
+
+
+func mob_sizer():
+	var sizes = ["S", "M", "L", "XL"]
+	if score < 50:
+		return "M"
+		
+	elif score < 70:
+		return sizes[randi() % 2]
+	
+	elif score < 100:
+		return sizes[randi() % 3]
+		
+	else:
+		return sizes[randi() % 4]
 
 
 func _on_mob_timer_timeout():
+	create_mob()
+
+
+func create_mob():
+	
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
 
@@ -57,9 +74,17 @@ func _on_mob_timer_timeout():
 	mob.rotation = direction
 
 	# Choose the velocity for the mob.
-	set_mob_velocity()
+	var velocity = mob_accelerator()
 	mob.linear_velocity = velocity.rotated(direction)
-
+	
+	#set the size of the mob
+	var mob_size = mob_sizer()
+	mob.set_mob_size(mob_size)
+	
+	#set the mob sound based on size
+	var mob_pitch = {"S":3.0, "M":2.0, "L":1.0, "XL":0.5}
+	$MobSound.pitch_scale = mob_pitch[mob_size]
+	
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
 	$MobSound.play()
