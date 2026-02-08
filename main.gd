@@ -17,6 +17,7 @@ func _ready():
 func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
+	$MobTimer.wait_time = 2.0
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
