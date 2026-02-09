@@ -88,6 +88,11 @@ func create_mob():
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
 	$MobSound.play()
+	print(
+		"Mob Sent :: size:" + str(mob_size) + 
+		" direction:" + str(direction) +
+		" speed:" + str(velocity))
+	
 
 
 func _on_score_timer_timeout():
