@@ -36,6 +36,7 @@ radius = 27.0
 height = 68.0
 
 [node name="Player" type="Area2D" unique_id=1768488024]
+collision_mask = 6
 script = ExtResource("1_sweqy")
 metadata/_edit_group_ = true
 
@@ -48,5 +49,7 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=224918364]
 shape = SubResource("CapsuleShape2D_b26j0")
 metadata/_edit_group_ = true
+
+[node name="PlayerSound" type="AudioStreamPlayer" parent="." unique_id=1192508139]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

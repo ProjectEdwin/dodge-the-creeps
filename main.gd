@@ -3,6 +3,7 @@ extends Node
 ## Adapted from Dodge the Creeps Godot tutorial
 
 @export var mob_scene: PackedScene
+@export var power_up_scene: PackedScene
 
 var score
 var hi_score = 0
@@ -14,7 +15,7 @@ func _ready():
 
 
 func new_game():
-	score = 0 #TODO: Dont forget to set this to 0 
+	score = 18 #TODO: Dont forget to set this to 0 
 	$Player.start($StartPosition.position)
 	$MobTimer.wait_time = 2.0
 	$StartTimer.start()
@@ -22,6 +23,7 @@ func new_game():
 	$HUD.show_message("Get Ready")
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
+	print("=====GAME STARTED====")
 
 
 func mob_accelerator():
@@ -90,15 +92,21 @@ func create_mob():
 	$MobSound.play()
 	print(
 		"Mob Sent :: size:" + str(mob_size) + 
-		" direction:" + str(direction) +
-		" speed:" + str(velocity))
+		" | dir:" + str(direction) +
+		" | pos:" + str(mob.position) +
+		" | speed:" + str(velocity.x))
 	
+func create_power_up():
+	if score >= 20 and score % 5 == 0 and $PowerUpEnabledTimer.is_stopped():
+		var power_up = power_up_scene.instantiate()
+		add_child(power_up)
 
 
 func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score(score)
 	set_mob_frequency()
+	create_power_up()
 
 
 func _on_start_timer_timeout():
@@ -110,6 +118,8 @@ func game_over() -> void:
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$Music.stop()
+	$PowerUpEnabledTimer.stop()
+	get_tree().call_group("power_ups", "queue_free")
 	
 	if score > hi_score:
 		hi_score = score
@@ -119,3 +129,15 @@ func game_over() -> void:
 	else:
 		$HUD.show_game_over("Game Over")
 		$DeathSound.play()
+	
+	print("=====GAME ENDED || SCORE:" + str(score) + "====")
+
+func _on_player_power_up_taken() -> void:
+	# Start the power up enabled timer and remove the power up
+	$PowerUpEnabledTimer.start()
+	get_tree().call_group("power_ups", "queue_free")
+
+
+func _on_power_up_enabled_timer_timeout() -> void:
+	$Player.reset_power_up()
+	print("...power up mode ended...")
