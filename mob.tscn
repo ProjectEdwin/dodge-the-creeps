@@ -48,8 +48,8 @@ animations = [{
 radius = 24.0
 height = 66.0
 
-[node name="Mob" type="RigidBody2D" unique_id=266891180]
-collision_mask = 0
+[node name="Mob" type="RigidBody2D" unique_id=266891180 groups=["mobs"]]
+collision_layer = 2
 gravity_scale = 0.0
 script = ExtResource("1_1qmh0")
 metadata/_edit_group_ = true
@@ -57,12 +57,15 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1055437425]
 sprite_frames = SubResource("SpriteFrames_pcqmr")
 animation = &"fly"
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=702328123]
 rotation = 1.5707964
 scale = Vector2(1.6, 1.6)
 shape = SubResource("CapsuleShape2D_jbnni")
+metadata/_edit_group_ = true
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1485356224]
+metadata/_edit_group_ = true
 
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
