@@ -2,13 +2,16 @@ extends Area2D
 
 signal hit
 signal power_up_taken
+signal player_bombed
+
+#TODO: Refactor this... eww
 var PowerSETiny = preload("res://sound/tiny.wav")
+var PowerSEGhost = preload("res://sound/ghost.wav")
+var PowerSEBomb = preload("res://sound/bomb.wav")
 var PowerSEReset = preload("res://sound/reset.wav") 
 
-#TODO: Change to be dynamically load sounds as ENUMS?
-
-
 @export var speed = 200 # How fast the player will move (pixels/sec).
+@export var playerState = "Normal" # Normal or explicit Power Up
 var screen_size # Size of the game window.
 
 
@@ -59,6 +62,7 @@ func _on_body_entered(_body):
 	elif _body.collision_layer == 4:
 		power_up_taken.emit()
 		var type = _body.type
+		playerState = type
 		power_up_mode(type)
 		print("!!" + type + " power up mode activated!!")
 
@@ -70,15 +74,32 @@ func power_up_mode(mode):
 		speed = 350
 		
 		$PlayerSound.stream = PowerSETiny
-		$PlayerSound.play()
-
+	
+	elif mode == "Ghost":
+		$CollisionShape2D.set_deferred("disabled",true)
+		modulate.a = 0.5
+		$PlayerSound.stream = PowerSEGhost
+	
+	elif mode == "Bomb":
+		$PlayerSound.stream = PowerSEBomb
+		get_tree().call_group("mobs", "queue_free")
+		player_bombed.emit()
+		
+	$PlayerSound.play()
 
 func reset_power_up():
 		$AnimatedSprite2D.scale = Vector2(0.5, 0.5)
 		$CollisionShape2D.scale = Vector2(0.5, 0.5)
 		speed = 200
+		$CollisionShape2D.disabled = false
 		$PlayerSound.stream = PowerSEReset
-		$PlayerSound.play()
+		modulate.a = 1.0
+		
+		if playerState != "Bomb":
+			$PlayerSound.play()
+			playerState = "Normal"
+		else:
+			playerState = "Normal"
 
 func start(pos):
 	position = pos

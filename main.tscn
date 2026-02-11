@@ -65,6 +65,7 @@ rotation = 0.0021008374
 [node name="MobSound" parent="." unique_id=707441255 instance=ExtResource("8_kek77")]
 
 [connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="player_bombed" from="Player" to="." method="screenflash"]
 [connection signal="power_up_taken" from="Player" to="." method="_on_player_power_up_taken"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="PowerUpEnabledTimer" to="." method="_on_power_up_enabled_timer_timeout"]

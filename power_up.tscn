@@ -20,7 +20,7 @@ texture = ExtResource("1_hirvy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1169471588]
 shape = SubResource("CapsuleShape2D_asnu2")
 
-[node name="TinySound" parent="." unique_id=1868462262 instance=ExtResource("3_h1prs")]
+[node name="PowerUpAppearsSound" parent="." unique_id=1868462262 instance=ExtResource("3_h1prs")]
 
 [node name="PowerUpTimer" type="Timer" parent="." unique_id=285762249 groups=["power_ups"]]
 wait_time = 3.0
