@@ -15,7 +15,7 @@ func _ready():
 
 
 func new_game():
-	score = 18 #TODO: Dont forget to set this to 0 
+	score = 0 #TODO: Dont forget to set this to 0 
 	$Player.start($StartPosition.position)
 	$MobTimer.wait_time = 2.0
 	$StartTimer.start()
@@ -24,7 +24,7 @@ func new_game():
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
 	print("=====GAME STARTED====")
-
+	
 
 func mob_accelerator():
 	var multiplier = score * 2
@@ -102,6 +102,25 @@ func create_power_up():
 		add_child(power_up)
 
 
+func screenflash():
+	# TODO: Need an elegant way to flash the screen with frames (this ain't it)
+	
+	var colors = [
+		Color(1.00, 0.12, 1.00, 0.18),
+		Color(1.00, 0.12, 0.14, 1.00),
+		Color(1.00, 0.12, 0.14, 0.00)]
+	
+	$ColorRect.color = colors[1]
+	await get_tree().create_timer(0.1).timeout
+	$ColorRect.color = colors[2]
+	await get_tree().create_timer(0.1).timeout
+	$ColorRect.color = colors[1]
+	await get_tree().create_timer(0.1).timeout
+	$ColorRect.color = colors[2]
+	await get_tree().create_timer(0.1).timeout
+	$ColorRect.color = colors[0]
+	
+
 func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score(score)
@@ -136,7 +155,7 @@ func _on_player_power_up_taken() -> void:
 	# Start the power up enabled timer and remove the power up
 	$PowerUpEnabledTimer.start()
 	get_tree().call_group("power_ups", "queue_free")
-
+	
 
 func _on_power_up_enabled_timer_timeout() -> void:
 	$Player.reset_power_up()
