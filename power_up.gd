@@ -20,7 +20,7 @@ func start():
 
 func set_power_up_sprite(sprite):
 	if sprite == "Tiny":
-		var texture = preload("res://art/playerGrey_up1.png") 
+		var texture = preload("res://art/powerup_tiny.png") 
 		$Sprite2D.texture = texture
 	elif sprite == "Ghost":
 		var texture = preload("res://art/powerup_ghost.png") 
