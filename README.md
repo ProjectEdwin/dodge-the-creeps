@@ -49,6 +49,43 @@ As your score increases:
 - Creeps move faster
 - Panic becomes optional but understandable
 
+## 🔮 Powerup System (v0.0.2)
+
+Powerups unlock once you prove you can survive.
+
+### 🧠 Unlock Condition
+- Powerups begin spawning **after reaching a score of 20**.
+- Only **one powerup can exist at a time**.
+- Powerups spawn **randomly**.
+- Powerups are **not stackable** — one effect at a time.
+
+This keeps things strategic instead of chaotic.
+
+---
+
+### 🛡️ Ghost Mode
+- Temporarily allows the player to pass through enemies.
+- Audio effect performed by **Jeesely** — and honestly, it might be the best sound in the game.
+
+---
+
+### 💣 Bomb Mode
+- Instantly destroys all enemies currently on screen.
+- Useful when things get... uncomfortable.
+
+---
+
+### 🐭 Tiny Mode
+- Shrinks the player.
+- Makes tight dodging possible (and slightly hilarious).
+- Includes custom sound effects (made by yours truly).
+
+---
+
+Powerups are still being tuned for balance.
+If something feels too strong, too weak, or too chaotic,
+please let me know via the feedback form.
+
 ---
 
 ## 🛠️ Running the Project Locally
